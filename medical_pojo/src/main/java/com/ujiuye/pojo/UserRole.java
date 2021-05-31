@@ -2,8 +2,10 @@ package com.ujiuye.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -16,13 +18,14 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_user_role")
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserRole extends Model {
 
     private static final long serialVersionUID = 1L;
 
-      private Integer userId;
+    private Integer userId;
 
     private Integer roleId;
-
-
+    
 }

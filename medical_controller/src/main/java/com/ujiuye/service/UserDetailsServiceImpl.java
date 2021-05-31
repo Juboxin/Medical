@@ -38,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorityList = new ArrayList<>();
 
         //查询用户对应的角色
-        List<Role> roleList = iRoleService.listByUserId(user.getId());
+        List<Role> roleList = iRoleService.listByUserID(user.getId());
         for (Role role : roleList) {
             String keyword = role.getKeyword();
             authorityList.add(new SimpleGrantedAuthority(keyword));

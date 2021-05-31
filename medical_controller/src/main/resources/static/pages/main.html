@@ -36,8 +36,8 @@
                     <span class="help"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>帮助</span>
                     <el-dropdown class="avatar-container right-menu-item" trigger="click">
                         <div class="avatar-wrapper">
-                            <img src="../img/user2-160x160.jpg" class="user-avatar">
-                            Mr.wang
+                            <img src="../img/user1-128x128.jpg" class="user-avatar">
+                            {{username}}
                         </div>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item divided>
@@ -81,10 +81,12 @@
 <script src="../js/vue.js"></script>
 <script src="../plugins/elementui/index.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
+<script src="../js/axios-0.18.0.js"></script>
 <script>
     new Vue({
         el: '#app',
         data: {
+            username: 'admin',
             menuList: [
                 {
                     "path": "1",
@@ -105,13 +107,8 @@
                         },
                         {
                             "path": "/2-2",
-                            "title": "体检资料上传",
-                            "children": []
-                        },
-                        {
-                            "path": "/2-3",
                             "title": "会员信息统计",
-                            "linkUrl": "all-item-list.html",
+                            "linkUrl": "report_member.html",
                             "children": []
                         },
                     ]
@@ -154,51 +151,70 @@
                     ]
                 },
                 {
-                    "path": "4",
-                    "title": "健康评测",
-                    "icon": "fa-stethoscope",
-                    "children": [
-                        {
-                            "path": "/4-1",
-                            "title": "中医体质辨识",
-                            "linkUrl": "all-medical-list.html",
-                            "children": []
-                        },
-                    ]
-                },
-                {
                     "path": "5",     //菜单项所对应的路由路径
                     "title": "统计分析",     //菜单项名称
                     "icon": "fa-heartbeat",
                     "children": [//是否有子菜单，若没有，则为[]
                         {
-                            "path": "/5-1",
-                            "title": "工作量统计",
-                            "linkUrl": "all-medical-list.html",
-                            "children": []
-                        },
-                        {
-                            "path": "/5-2",
+                            "path": "/5-3",
                             "title": "会员统计",
                             "linkUrl": "report_member.html",
                             "children": []
                         },
                         {
-                            "path": "/5-3",
+                            "path": "/5-1",
                             "title": "套餐销量统计",
                             "linkUrl": "report_setmeal.html",
                             "children": []
-                        },
+                        }
+                        ,
                         {
-                            "path": "/5-5",
+                            "path": "/5-2",
                             "title": "运营统计",
                             "linkUrl": "report_business.html",
                             "children": []
                         }
                     ]
+                },
+                {
+                    "path": "6",     //菜单项所对应的路由路径
+                    "title": "系统设置",     //菜单项名称
+                    "icon": "el-icon-setting",
+                    "children": [//是否有子菜单，若没有，则为[]
+                        {
+                            "path": "/6-1",
+                            "title": "菜单管理",
+                            "linkUrl": "menu.html",
+                            "children": []
+                        },
+                        {
+                            "path": "/6-2",
+                            "title": "权限管理",
+                            "linkUrl": "permission.html",
+                            "children": []
+                        },
+                        {
+                            "path": "/6-3",
+                            "title": "角色管理",
+                            "linkUrl": "role.html",
+                            "children": []
+                        },
+                        {
+                            "path": "/6-4",
+                            "title": "用户管理",
+                            "linkUrl": "user.html",
+                            "children": []
+                        },
+                    ]
                 }
             ]
-        }
+        },
+        //报错为axios is not defined时,表示没有导入<script src="../js/axios-0.18.0.js">
+        created() {
+            axios.get("http://localhost:9003/user/getCurrentUser").then(response => {
+                this.username = response.data;
+            });
+        },
     });
     $(function () {
         var wd = 200;

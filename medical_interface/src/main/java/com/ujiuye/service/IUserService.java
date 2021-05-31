@@ -2,6 +2,8 @@ package com.ujiuye.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ujiuye.pojo.User;
+import com.ujiuye.utils.util.PageResult;
+import com.ujiuye.utils.util.QueryPageBean;
 
 /**
  * <p>
@@ -13,4 +15,13 @@ import com.ujiuye.pojo.User;
  */
 public interface IUserService extends IService<User> {
     User getByUserName(String username);
+
+    PageResult listQuery(QueryPageBean queryPageBean);
+
+    Boolean saveUser(User user);
+
+    Boolean updateUser(User user);
+
+    User getUser(int id);
+
 }

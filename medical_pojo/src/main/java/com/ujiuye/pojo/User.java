@@ -1,13 +1,12 @@
 package com.ujiuye.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -41,5 +40,9 @@ public class User extends Model {
 
     private String telephone;
 
-
+    @TableLogic
+    private Integer deleted;
+    
+    @TableField(exist = false)
+    private List<Integer> roleIds;
 }
