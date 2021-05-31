@@ -1,0 +1,28 @@
+package com.ujiuye.pojo;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * <p>
+ * 员工表与角色表的中间表,一个员工有多个角色
+ * </p>
+ *
+ * @author encan
+ * @since 2021-05-18
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("t_user_role")
+public class UserRole extends Model {
+
+    private static final long serialVersionUID = 1L;
+
+      private Integer userId;
+
+    private Integer roleId;
+
+
+}
