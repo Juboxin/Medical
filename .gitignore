@@ -1,8 +1,0 @@
-# Project exclude paths
-/medical_controller/target/
-/medical_interface/target/
-/medical_job/target/
-/medical_mobile/target/
-/medical_pojo/target/
-/medical_provider/target/
-/medical_util/target/
